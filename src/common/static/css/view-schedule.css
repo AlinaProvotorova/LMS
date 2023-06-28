@@ -1,0 +1,50 @@
+.schedule-view-block {
+   display: flex;
+   margin: auto;
+   max-width: 1000px;
+}
+
+.schedule-day-box {
+   width: 100%;
+   border: 7px solid rgba(169, 197, 147, 0.1);
+	background: rgba(241, 242, 240, 0.6);
+	box-shadow: 7px 8px 9px 1px rgba(169, 197, 147, 0.68);
+	border-radius: 22px;
+   margin: 30px;
+   padding: 15px;
+}
+
+.schedule-day-box h3 {
+   text-align: center;
+   font-weight: bold;
+}
+
+.schedule-day-list {
+   margin-top: 15px;
+   display: grid;
+   width: 100%;
+   grid-template-columns: 15% 1fr 15%;
+}
+
+.schedule-day {
+   margin-top: 30px;
+}
+
+.thead {
+   font-weight: bold;
+   font-size: 16px;
+   text-align: center;
+}
+
+.tbody {
+   font-style: italic;
+   font-size: 14px;
+   margin-top: 15px;
+   margin-bottom: 15px;
+   text-align: center;
+}
+
+.tbody a {
+   text-decoration: none;
+   color: #526937;
+}

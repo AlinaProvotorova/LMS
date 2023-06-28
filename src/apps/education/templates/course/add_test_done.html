@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Тест{% endblock %}
+
+{% block content %}
+<h1>Тест добавлен!</h1>
+<p>Можете пройти тест <a href="{% url 'tests' test_id %}">здесь</a>.</p>
+<p>Или добавить новый тест <a href="{% url 'add_test' %}">здесь</a>.</p>
+{% endblock content %}

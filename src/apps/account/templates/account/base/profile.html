@@ -1,0 +1,39 @@
+{% extends 'account/base/base_account.html' %}
+{% load static %}
+
+{% block title %}
+Личный кабинет
+{% endblock title %}
+
+
+{% block content_account %}
+<div class="my-profile-card" xmlns="http://www.w3.org/1999/html">
+  <div class="lk-profile-card">
+    <div class="profile-card-fio">
+      <div class="lk-avatar">
+        <img src="{{ user.photo.url }}" alt="#" style="width:100px;">
+      </div>
+      <div class="lk-fio">
+        <div>{{ user.first_name }} {{ user.reporting }} {{ user.last_name }}</div>
+        <div class="student-status">
+          {% for role in user.roles.all %}
+          <p><a href="{% url 'profile' role=role.name %}">{{ role.get_name_display }}</a></p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="lk-profile-mail">
+      <div><img src="{% static 'img/Mail-logo.svg' %}" alt="#"></div>
+      <div>email</div>
+      <div>{{ user.email }}</div>
+    </div>
+    <div class="lk-profile-phone">
+      <div><img src="{% static 'img/Phone-logo.svg' %}" alt="#"></div>
+      <div>телефон</div>
+      <div>{{ user.telephone }}</div>
+    </div>
+    <div class="psw-change"><p><a href="{% url 'edit' role=role %}">редактировать профиль</a></p>
+      <a href="{% url 'password_change' %}">изменить пароль</a></div>
+  </div>
+</div>
+{% endblock content_account %}

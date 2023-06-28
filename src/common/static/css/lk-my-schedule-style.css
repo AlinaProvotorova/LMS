@@ -1,0 +1,26 @@
+.my-schedule-table {
+   display: grid;
+   grid-template-columns: 81px 1fr 1fr 95px 135px;
+   height: min-content;
+   color: #526937;
+   text-align: center;
+   border: 7px solid rgba(169, 197, 147, 0.1);
+	background: rgba(241, 242, 240, 0.6);
+	box-shadow: 7px 8px 9px 1px rgba(169, 197, 147, 0.68);
+	border-radius: 22px;
+   margin: 30px;
+   padding: 15px;
+}
+
+.thead {
+   font-weight: bold;
+   font-size: 16px;
+}
+
+.tbody {
+   font-style: italic;
+   font-size: 14px;
+   margin-top: 15px;
+   margin-bottom: 15px;
+}
+

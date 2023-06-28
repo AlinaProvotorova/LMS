@@ -1,0 +1,107 @@
+body {
+	margin: 0;
+	padding: 0;
+	color: #000;
+	font-size: 16px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+}
+
+.container {
+	width: 100%;
+	margin: 0 auto;
+	background-color: #F5F5F5;
+}
+
+.form-container {
+	min-height: 787px;
+	position: relative;
+	background-color: #FFFFFF;
+	width: 1000px;
+	margin: auto;
+	border-radius: 44px;
+	padding: 20px;
+}
+
+.auth-form {
+	z-index: 2;
+	position: relative;
+}
+
+.login-form {
+	max-width: 631px;
+}
+
+.login-form h2 {
+	font-weight: 500;
+	font-size: 36px;
+	color: #526937;
+	text-align: center;
+	margin: auto;
+}
+
+.singup-fields {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 200px;
+	max-width: 300px;
+	margin-left: 27%;
+}
+
+.singup-fields button {
+	margin-top: 55px;
+	background: linear-gradient(180deg, #D5F9DD 0%, #C3E9CB 100%);
+	border-radius: 16px;
+	border: 2px solid;
+	color: #FFFFFF;
+	font-weight: 600;
+	font-size: 20px;
+	text-transform: uppercase;
+	line-height: 24px;
+	padding: 7px 60px;
+}
+
+.singup-fields button:hover {
+	border: 2px solid rgba(169, 197, 147, 0.1);
+	box-shadow: 7px 8px 9px 1px rgba(169, 197, 147, 0.68);
+	border-radius: 22px;
+	cursor: pointer;
+}
+
+.singup-fields label {
+	color: #526937;
+	font-size: 18px;
+	text-align: center;
+	margin-top: 30px;
+}
+
+.singup-fields input {
+	min-width: 100%;
+	font-size: 16px;
+	border: none;
+	border-bottom: 1px solid #526937;
+	margin-top: 15px;
+	outline: none;
+}
+
+input::placeholder {
+	color: rgba(99, 99, 99, 0.27);
+}
+
+.right-sider {
+	min-width: 431px;
+	min-height: 787px;
+	background: linear-gradient(180deg, #D5F9DD 0%, #C3E9CB 100%);
+	border-radius: 0px 44px 44px 0px;
+	position: absolute;
+	right: 1px;
+	top: 1px;
+	bottom: 1px;
+}
+
+.character {
+	position: absolute;
+	bottom: 20px;
+	z-index: 1;
+}

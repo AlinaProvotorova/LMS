@@ -1,0 +1,55 @@
+{% extends 'account/base/base_account.html' %}
+{% load static %}
+
+{% block title %}Редактирование аккаунта{% endblock %}
+
+
+{% block content_account %}
+
+<div class="container">
+  <div class="form-container">
+    <div class="auth-form">
+      <form action="{% url 'edit' role=role %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="singup-fields">
+          <h2>Редактирование аккаунта</h2>
+<!--          {% if request.user.is_authenticated %}-->
+          <p id="validate-status">
+            {% for filed in form %}
+            {{ filed.label }}
+            {{ filed }}
+            {% endfor %}
+            {% for filed in profile_form %}
+            {{ filed.label }}
+            {{ filed }}
+            {% endfor %}
+            <!--            <label for="name">Имя</label>-->
+            <!--            <input name="first_name" type="text" id="name" autocomplete="first_name" value="{{ user.first_name }}">-->
+            <!--            <label for="surname">Фамилия</label>-->
+            <!--            <input name="last_name" type="text" id="surname" autocomplete="last_name" value="{{ user.last_name }}">-->
+            <!--            <label for="reporting">Отчество</label>-->
+            <!--            <input name="reporting" type="text" id="reporting" autocomplete="reporting"-->
+            <!--                   value="{{ user.profile.reporting }}">-->
+            <!--            <label for="mail">Электронная почта</label>-->
+            <!--            <input name="email" type="email" id="mail" autocomplete="email" value="{{ user.email }}">-->
+            <!--            <label for="telephone">Телефон</label>-->
+            <!--            <input name="telephone" type="tel" pattern="\+?[0-9\s\-\(\)]+" id="telephone" autocomplete="telephone"-->
+            <!--                   value="{{ user.profile.telephone }}">-->
+            <!--            <label for="date_of_birth">Дата рождения</label>-->
+            <!--            <input name="date_of_birth" type="date" id="date_of_birth" autocomplete="date_of_birth"-->
+            <!--                   value="{{ user.profile.date_of_birth }}">-->
+            <!--            <label for="photo">Фото</label>-->
+            <!--            <input type="file" name="photo" multiple accept="image/*,image/jpeg" id="photo" autocomplete="photo"-->
+            <!--                   value="{{ user.profile.photo }}">-->
+
+            <button type="submit" class="btn btn-primary btn-block">Сохранить</button>
+          </p>
+<!--          {% endif %}-->
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content_account %}

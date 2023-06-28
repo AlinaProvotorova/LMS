@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Университет Естественных и Гуманитарных наук - Главная
+{% endblock title %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock head %}
+
+{% block content %}
+<section id="content" class="content">
+  <div class="container">
+    <div class="slideshow-container">
+
+      <div class="my-slides fade">
+        <div class="numbertext">1 / 3</div>
+        <img src="{% static 'img/slide-foto1.png' %}" style="width:100%">
+        <div class="text">
+          <div class="course-title">
+            <p class="slide-description">
+              САМЫЙ КЛЕВЫЙ КУРС НА СВЕТЕ
+            </p>
+            <h1 class="course-name">
+              "НАЗВАНИЕ КУРСА"
+            </h1>
+          </div>
+          <div class="course-buttons">
+            <button class="details">подробнее</button>
+            <button class="sign">записаться</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="my-slides fade">
+        <div class="numbertext">2 / 3</div>
+        <img src="{% static 'img/slide-foto1.png' %}" style="width:100%">
+        <div class="text">
+          <div class="course-title">
+            <p class="slide-description">
+              САМЫЙ КЛЕВЫЙ КУРС НА СВЕТЕ
+            </p>
+            <h1 class="course-name">
+              "НАЗВАНИЕ КУРСА"
+            </h1>
+          </div>
+          <div class="course-buttons">
+            <button class="details">подробнее</button>
+            <button class="sign">записаться</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="my-slides fade">
+        <div class="numbertext">3 / 3</div>
+        <img src="{% static 'img/slide-foto1.png' %}" style="width:100%">
+        <div class="text">
+          <div class="course-title">
+            <p class="slide-description">
+              САМЫЙ КЛЕВЫЙ КУРС НА СВЕТЕ
+            </p>
+            <h1 class="course-name">
+              "НАЗВАНИЕ КУРСА"
+            </h1>
+          </div>
+          <div class="course-buttons">
+            <button class="details">подробнее</button>
+            <button class="sign">записаться</button>
+          </div>
+        </div>
+      </div>
+
+      <a class="prev" onclick="plusSlides(-1)">❮</a>
+      <a class="next" onclick="plusSlides(1)">❯</a>
+    </div>
+    <br>
+
+    <div style="text-align:center">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+    <div class="news-1">
+      <div class="left-side">
+        <div class="news-date">
+          21.01.23
+        </div>
+        <h1 class="news-title">С другой стороны укрепление и развитие структуры</h1>
+        <div class="news-description">Равным образом рамки и место обучения кадров позволяет выполнять важные
+          задания по разработке существенных финансовых и административных условий. Повседневная практика
+          показывает, что дальнейшее развитие различных форм деятельности способствует подготовки и реализации
+          дальнейших направлений развития.
+        </div>
+      </div>
+      <div class="right-side"><img src="{% static 'img/news1.png' %}" alt="news"></div>
+    </div>
+    <div class="news-2">
+      <div class="left-side">
+        <img src="{% static 'img/news2.png' %}" alt="news">
+      </div>
+      <div class="right-side">
+        <div class="news-date">
+          21.01.23
+        </div>
+        <h1 class="news-title">С другой стороны укрепление и развитие структуры</h1>
+        <div class="news-description">Равным образом рамки и место обучения кадров позволяет выполнять важные
+          задания по разработке существенных финансовых и административных условий. Повседневная практика
+          показывает, что дальнейшее развитие различных форм деятельности способствует подготовки и реализации
+          дальнейших направлений развития.
+        </div>
+      </div>
+    </div>
+    <div class="news-3">
+      <div class="left-side">
+        <div class="news-date">
+          21.01.23
+        </div>
+        <h1 class="news-title">С другой стороны укрепление и развитие структуры</h1>
+        <div class="news-description">Равным образом рамки и место обучения кадров позволяет выполнять важные
+          задания по разработке существенных финансовых и административных условий. Повседневная практика
+          показывает, что дальнейшее развитие различных форм деятельности способствует подготовки и реализации
+          дальнейших направлений развития.
+        </div>
+      </div>
+      <div class="right-side"><img src="{% static 'img/news3.png' %}" alt="news"></div>
+    </div>
+    <div class="discounts">
+      <div class="discount-1">
+        <div class="discount">20%</div>
+        <div class="discount-description">курс
+          тестировка
+          с нуля
+        </div>
+      </div>
+      <div class="discount-2">
+        <div class="discount">40%</div>
+        <div class="discount-description">курс
+          тестировка
+          с нуля
+        </div>
+      </div>
+      <div class="discount-3">
+        <div class="discount">70%</div>
+        <div class="discount-description">курс
+          тестировка
+          с нуля
+        </div>
+      </div>
+      <div class="discount-4">
+        <div class="discount">50%</div>
+        <div class="discount-description">курс
+          тестировка
+          с нуля
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="{% static 'js/turntable.js' %}"></script>
+{% endblock content %}

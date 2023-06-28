@@ -1,0 +1,40 @@
+.discipline-mat-container {
+   display: flex;
+   margin: auto;
+   max-width: 1000px;
+}
+
+.grid-table {
+   display: grid;
+   width: 70%;
+   grid-template-columns: 1fr 35%;
+   border: 7px solid rgba(169, 197, 147, 0.1);
+	background: rgba(241, 242, 240, 0.6);
+	box-shadow: 7px 8px 9px 1px rgba(169, 197, 147, 0.68);
+	border-radius: 22px;
+   margin: 30px;
+   padding: 15px;
+}
+
+.grid-table a {
+   text-decoration: none;
+   color: #526937;
+}
+
+.thead {
+   font-weight: bold;
+   font-size: 16px;
+}
+
+.tbody {
+   font-style: italic;
+   font-size: 14px;
+   margin-top: 15px;
+   margin-bottom: 15px;
+}
+
+.test-vis {
+   font-weight: bold;
+}
+
+

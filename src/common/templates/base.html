@@ -1,0 +1,41 @@
+{% include "header.html" %}
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/base-style.css' %}">
+  <title> {% block title %}Университет Естественных и Гуманитарных наук - Главная {% endblock title %} </title>
+<!--  <link rel="stylesheet" href="{% static 'css/style.css' %}">-->
+
+  {% block head %}
+  {% endblock head %}
+<!--  <link rel="stylesheet" href="{% static 'css/authorization-style.css' %}">-->
+<!--  -->
+<!--  <link rel="stylesheet" href="{% static 'css/lk-style.css' %}">-->
+<!--  <link rel="stylesheet" href="{% static 'css/lk-my-schedule-style.css' %}">-->
+<!--  <link rel="stylesheet" href="{% static 'css/lk-my-portfolio-style.css' %}">-->
+<!--  <link rel="stylesheet" href="{% static 'css/lk-my-profile.css' %}">-->
+
+<!--  <link rel="stylesheet" href="{% static 'css/passing-tests-style.css' %}">-->
+<!--  <link rel="stylesheet" href="{% static 'css/editing-tets.css' %}">-->
+
+<!--  <script src="{% static 'js/turntable.js' %}"></script>-->
+<!--  <script src="{% static 'js/editing-test-page.js' %}"></script>-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+{% block content %}
+{% endblock content %}
+</body>
+
+</html>
+
+{% include "footer.html" %}
+

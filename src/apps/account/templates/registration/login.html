@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Вход{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/authorization-style.css' %}" xmlns="http://www.w3.org/1999/html">
+{% endblock head %}
+
+{% block content %}
+<div class="container">
+  <div class="form-container">
+    <div class="auth-form">
+      <form class="login-form" action="{% url 'login' %}" method="POST">
+        <h2>Авторизация</h2>
+        {% if form.errors %}
+        <p align="center">
+          Пользователь не найден, попробуйте снова.
+        </p>
+        {% endif %}
+        <div class="login-fields">
+          <input name="username" type="text" autocomplete="username"
+                 placeholder="Электронная почта или логин" value="{{ username }}">
+          <input name="password" autocomplete="current-password" class="passwordinput form-control"
+                 type="password" placeholder="Пароль" value="{{ password }}">
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ next }}">
+          <p>
+            <br><br><br>
+            <button type="submit" class="btn btn-primary btn-block">вход</button>
+          </p>
+        </div>
+        <div class="forgot-psw">
+          <p>
+            <span class="psw"><a href="{% url 'password_reset' %}">Забыли пароль</a></span>
+            <br><br>
+            <span class="psw"><a href="{% url 'register' %}">Регистрация</a></span>
+          </p>
+        </div>
+      </form>
+    </div>
+    <div class="right-sider">
+
+    </div>
+    <div class="character">
+      <img src="{% static 'img/Character.svg' %}" alt="character">
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}

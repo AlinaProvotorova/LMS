@@ -1,0 +1,23 @@
+{% extends 'account/base/base_account.html' %}
+
+{% block title %}
+Моё портфолио
+{% endblock title %}
+
+
+{% block content_account %}
+
+<div class="my-portfolio-table">
+  <div class="thead">Название документа</div>
+  <div class="thead">Дисциплина</div>
+  <div class="thead">Оценка</div>
+  <div class="thead">Дата загрузки</div>
+  {% for portfolio in portfolio_list %}
+  <div class="tbody"><a href="{{ portfolio.file.url }}">Ссылка</a></div>
+  <div class="tbody">{{ portfolio.title }}</div>
+  <div class="tbody">5</div>
+  <div class="tbody">{{ portfolio.date_added }}</div>
+  {% endfor %}
+  <div class="psw-change"><p><a href="{% url 'add_portfolio' role=role %}">добавить</a></p></div>
+</div>
+{% endblock content_account %}

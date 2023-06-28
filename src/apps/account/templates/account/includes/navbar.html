@@ -1,0 +1,61 @@
+{% load static %}
+<!--<section id="container" class="container">-->
+{% if role == 'teacher' %}
+<div class="navigation-lk">
+  <div class="my-education">
+    <div class="my-education-logo"><img src="{% static 'img/my-education.svg' %}" alt="#"></div>
+    <div class="my-education-text"><a href="{% url 'educations' role='teacher' %}">Мои дисциплины</a>
+    </div>
+  </div>
+  <div class="my-courses">
+    <div class="my-courses-logo"><img src="{% static 'img/my-courses.svg' %}" alt="#"></div>
+    <div class="my-courses-text"><a href="{% url 'courses_list' role='teacher' %}">Мои курсы</a></div>
+  </div>
+  <div class="my-schedule">
+    <div class="my-schedule-logo"><img src="{% static 'img/my-schedule.svg' %}" alt="#"></div>
+    <div class="my-schedule-text"><a href="{% url 'schedule' role='teacher' %}">Моё расписание</a></div>
+  </div>
+  <div class="my-portfolio">
+    <div class="my-portfolio-logo"><img src="{% static 'img/my-portfolio.svg' %}" alt="#"></div>
+    <div class="my-portfolio-text"><a href="{% url 'students_works' role='teacher' %}">Работы студентов</a></div>
+  </div>
+  <div class="my-profile">
+    <div class="my-profile-logo"><img src="{% static 'img/my-profile.svg' %}" alt="#"></div>
+    <div class="my-profile-text"><a href="{% url 'profile' role='teacher' %}">Профиль</a></div>
+  </div>
+  <div class="my-profile">
+    <div class="my-profile-logo"><img src="{% static 'img/my-profile.svg' %}" alt="#"></div>
+    <div class="my-profile-text"><a href="{% url 'documents_user' role='teacher' %}">Документы</a></div>
+  </div>
+</div>
+{% elif role == 'student' %}
+<div class="navigation-lk">
+  <div class="my-education">
+    <div class="my-education-logo"><img src="{% static 'img/my-education.svg' %}" alt="#"></div>
+    <div class="my-education-text"><a href="{% url 'educations' role='student' %}">Моё обучение</a>
+    </div>
+  </div>
+  <div class="my-courses">
+    <div class="my-courses-logo"><img src="{% static 'img/my-courses.svg' %}" alt="#"></div>
+    <div class="my-courses-text"><a href="{% url 'courses_list' role='student' %}">Мои курсы</a></div>
+  </div>
+  <div class="my-schedule">
+    <div class="my-schedule-logo"><img src="{% static 'img/my-schedule.svg' %}" alt="#"></div>
+    <div class="my-schedule-text"><a href="{% url 'schedule' role='student' %}">Расписание</a></div>
+  </div>
+  <div class="my-portfolio">
+    <div class="my-portfolio-logo"><img src="{% static 'img/my-portfolio.svg' %}" alt="#"></div>
+    <div class="my-portfolio-text"><a href="{% url 'portfolio' role='student' %}">Портфолио</a></div>
+  </div>
+  <div class="my-profile">
+    <div class="my-profile-logo"><img src="{% static 'img/my-profile.svg' %}" alt="#"></div>
+    <div class="my-profile-text"><a href="{% url 'profile' role='student'%}">Профиль</a></div>
+  </div>
+  <div class="my-profile">
+    <div class="my-profile-logo"><img src="{% static 'img/my-profile.svg' %}" alt="#"></div>
+    <div class="my-profile-text"><a href="{% url 'documents_user' role='student' %}">Документы</a></div>
+  </div>
+</div>
+<!--</section>-->
+
+{% endif %}
