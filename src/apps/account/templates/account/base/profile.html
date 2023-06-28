@@ -14,7 +14,7 @@
         <img src="{{ user.photo.url }}" alt="#" style="width:100px;">
       </div>
       <div class="lk-fio">
-        <div>{{ user.first_name }} {{ user.reporting }} {{ user.last_name }}</div>
+        <div>{{ user.full_name }}</div>
         <div class="student-status">
           {% for role in user.roles.all %}
           <p><a href="{% url 'profile' role=role.name %}">{{ role.get_name_display }}</a></p>

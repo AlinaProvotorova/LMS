@@ -8,36 +8,8 @@ from .forms import (
     DocumentsForm, PortfolioForm, UserEditForm, UserRegistrationForm
 )
 from .models import User
-from apps.education.models import Education
-
-
-class RoleContextMixin:
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['role'] = self.kwargs['role']
-        return context
-
-
-class RoleSuccessUrlMixin:
-    url_name = ''
-
-    def get_success_url(self):
-        role = self.kwargs['role']
-        return reverse_lazy(self.url_name, kwargs={'role': role})
-
-
-class MessageValidFormMixin:
-    success_message = ''
-    error_message = ''
-
-    def form_valid(self, form):
-        form.save()
-        messages.success(self.request, self.success_message)
-        return super().form_valid(form)
-
-    def form_invalid(self, form):
-        messages.error(self.request, self.error_message)
-        return super().form_invalid(form)
+from .mixins import MessageValidFormMixin, RoleContextMixin, RoleSuccessUrlMixin, EducationsListMixin
+from apps.education.models import Education, Subject, Section, Lecture
 
 
 class RegisterView(CreateView):
@@ -89,43 +61,24 @@ class EditProfileView(
     url_name = 'edit'
 
 
-class EducationsListView(LoginRequiredMixin, RoleContextMixin, ListView):
+class CoursesStudentView(EducationsListMixin, LoginRequiredMixin, ListView):
     """
-    Отображение списка курсов или программ обучения пользователя
-    """
-
-    context_object_name = 'educations'
-    is_online = None
-
-    def get_queryset(self):
-        user = self.request.user
-        if self.kwargs['role'] == 'teacher':
-            queryset = user.educations_teacher.filter(
-                education__is_online=self.is_online
-            )
-        else:
-            queryset = user.educations_student.filter(
-                education__is_online=self.is_online
-            )
-        return queryset
-
-
-class CoursesView(EducationsListView):
-    """
-    Отображение всех курсов пользователя
+    Отображение всех курсов студента
     """
 
     template_name = "account/student/courses_list.html"
     is_online = True
 
 
-class EducationsView(EducationsListView):
+class EducationsView(EducationsListMixin, LoginRequiredMixin, ListView):
     """
-    Отображение всех программ обучения пользователя
+    Отображение всех программ обучения студента
     """
 
-    template_name = "account/student/educations_list.html"
     is_online = False
+
+    def get_template_names(self):
+        return f"account/{self.kwargs['role']}/educations_list.html"
 
 
 class StudentCourseView(LoginRequiredMixin, RoleContextMixin, DetailView):
@@ -138,14 +91,52 @@ class StudentCourseView(LoginRequiredMixin, RoleContextMixin, DetailView):
     template_name = "account/student/course_detail.html"
 
 
-class StudentEducationView(LoginRequiredMixin, RoleContextMixin, DetailView):
+class EducationView(LoginRequiredMixin, RoleContextMixin, DetailView):
     """
-    Отображение одной программы обучения пользователя
+    Отображение одной программы обучения пользователя и дисциплин
     """
     model = Education
     context_object_name = 'education'
     pk_url_kwarg = 'id_education'
-    template_name = "account/student/education_detail.html"
+
+    def get_template_names(self):
+        return f"account/{self.kwargs['role']}/education_detail.html"
+
+
+class SubjectView(LoginRequiredMixin, RoleContextMixin, DetailView):
+    """
+    Отображение одной дисциплины и разделов
+    """
+    model = Subject
+    context_object_name = 'subject'
+    pk_url_kwarg = 'id_subject'
+
+    def get_template_names(self):
+        return f"account/{self.kwargs['role']}/subject_detail.html"
+
+
+class SectionView(LoginRequiredMixin, RoleContextMixin, DetailView):
+    """
+    Отображение одного раздела и лекции
+    """
+    model = Section
+    context_object_name = 'section'
+    pk_url_kwarg = 'id_section'
+
+    def get_template_names(self):
+        return f"account/{self.kwargs['role']}/section_detail.html"
+
+
+class LectureView(LoginRequiredMixin, RoleContextMixin, DetailView):
+    """
+    Отображение одной лекции
+    """
+    model = Lecture
+    context_object_name = 'lecture'
+    pk_url_kwarg = 'id_lecture'
+
+    def get_template_names(self):
+        return f"account/{self.kwargs['role']}/lecture_detail.html"
 
 
 class ScheduleView(View):

@@ -6,9 +6,10 @@ from django.views.generic.base import TemplateView
 
 from .views import (
     AddDocumentsView, DocumentsUserView, EditProfileView, ProfileView,
-    RegisterView, ScheduleView, StudentCourseView, CoursesView,
-    StudentEducationView, EducationsView, StudentPortfolioView,
-    StudentsWorksView, UploadPortfolioView,
+    RegisterView, ScheduleView, StudentCourseView, CoursesStudentView,
+    EducationView, EducationsView, StudentPortfolioView,
+    StudentsWorksView, UploadPortfolioView, SubjectView, SectionView,
+    LectureView
 )
 
 urlpatterns = [
@@ -47,7 +48,7 @@ urlpatterns = [
     path('', ProfileView.as_view(), name='dashboard'),
     path('<str:role>/', ProfileView.as_view(), name='profile'),
     path('<str:role>/edit/', EditProfileView.as_view(), name='edit'),
-    path('<str:role>/course', CoursesView.as_view(), name='courses_list'),
+    path('<str:role>/course', CoursesStudentView.as_view(), name='courses_list'),
     path('<str:role>/education', EducationsView.as_view(), name='educations'),
     path('<str:role>/schedule', ScheduleView.as_view(), name='schedule'),
     path(
@@ -63,8 +64,20 @@ urlpatterns = [
         name='student_course_detail'
     ),
     path(
-        '<str:role>/education/<id_education>', StudentEducationView.as_view(),
-        name='student_education_detail'
+        '<str:role>/education/<id_education>', EducationView.as_view(),
+        name='education_detail'
+    ),
+    path(
+        '<str:role>/subject/<id_subject>', SubjectView.as_view(),
+        name='subject_detail'
+    ),
+    path(
+        '<str:role>/section/<id_section>', SectionView.as_view(),
+        name='section_detail'
+    ),
+    path(
+        '<str:role>/lecture/<id_lecture>', LectureView.as_view(),
+        name='lecture_detail'
     ),
     path(
         '<str:role>/add-portfolio/', UploadPortfolioView.as_view(),

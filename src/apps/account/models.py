@@ -39,6 +39,9 @@ class User(AbstractUser):
     )
     roles = models.ManyToManyField(UserRole)
 
+    def full_name(self):
+        return f'{self.first_name} {self.reporting} {self.last_name}'
+
 
 class TeacherEducation(BaseModel):
     class Meta:

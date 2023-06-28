@@ -32,11 +32,11 @@ class Education(BaseModel):
         related_name='author_educations', verbose_name='Автор курса'
     )
 
+    def get_program_type(self):
+        return 'Курс' if self.is_online else 'Программа обучения'
+
     def __str__(self):
-        program_type = 'Программа обучения'
-        if self.is_online:
-            program_type = 'Курс'
-        return f'{self.title}({program_type})'
+        return f'{self.title}({self.get_program_type()})'
 
 
 class Subject(models.Model):
@@ -109,6 +109,7 @@ class GradingSystem(BaseModel):
     grade = models.PositiveSmallIntegerField(default=0)
     grade_ABCDEF = models.CharField(max_length=1, primary_key=True)
     grade_in_words = models.CharField(max_length=20)
+
 
 class Grade(BaseModel):
     class Meta:
