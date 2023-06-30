@@ -73,7 +73,7 @@ class EducationAdmin(admin.ModelAdmin):
     list_editable = ["date_start"]
     ordering = ["id"]
     list_filter = ["author", "is_online", "status"]
-    list_per_page = 10
+    list_per_page = 20
     inlines = [SubjectInline]
 
 
@@ -83,7 +83,7 @@ class SubjectAdmin(admin.ModelAdmin):
     ]
     list_editable = ["studying_time", "sequence"]
     ordering = ["sequence"]
-    list_per_page = 10
+    list_per_page = 20
     list_filter = ["education"]
     inlines = [SectionInline]
 
@@ -92,7 +92,7 @@ class SectionAdmin(admin.ModelAdmin):
     list_display = ["title", "subject", "date_added", "id"]
     ordering = ["id"]
     list_filter = ["subject"]
-    list_per_page = 10
+    list_per_page = 20
     inlines = [LectureInline]
 
 
@@ -100,7 +100,7 @@ class LectureAdmin(admin.ModelAdmin):
     list_display = ["title", "section", "date_added", "id"]
     ordering = ["id"]
     list_filter = ["section"]
-    list_per_page = 10
+    list_per_page = 20
 
 
 @admin.register(Schedule)
