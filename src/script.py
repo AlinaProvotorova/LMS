@@ -30,7 +30,7 @@ for _ in range(num_users):
     user.date_of_birth = date_of_birth
     user.roles.add(role)
     user.save()
-num_educations = 25  # Количество программ обучения, которые нужно создать
+num_educations = 5  # Количество программ обучения, которые нужно создать
 
 for _ in range(num_educations):
     title = fake.word()

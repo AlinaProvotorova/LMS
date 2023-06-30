@@ -25,7 +25,6 @@ admin.site.site_header = "Название"
 admin.site.index_title = "Заголовок"
 
 urlpatterns = [
-    path("__debug__/", include("debug_toolbar.urls")),
     path('', include('apps.shared.urls')),
     path('account/', include('apps.account.urls')),
     path('education/', include("apps.education.urls")),
