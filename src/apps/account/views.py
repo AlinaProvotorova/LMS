@@ -1,15 +1,30 @@
+from django import forms
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, View, ListView, DetailView, FormView
+from django.views.generic import CreateView, View, ListView, DetailView, FormView, TemplateView
+from extra_views import ModelFormSetView, FormSetView
+from django import forms
+from django.http import JsonResponse
 
-from .forms import (
-    DocumentsForm, PortfolioForm, UserEditForm, UserRegistrationForm
-)
-from .models import User
-from .mixins import MessageValidFormMixin, RoleContextMixin, RoleSuccessUrlMixin, EducationsListMixin
+from .models import User, Portfolio, DocumentsUser
+from django.forms import modelformset_factory
+from apps.education.models import Grade
+from urllib import request
+from django.core.files.base import ContentFile
+from django.utils.text import slugify
 from apps.education.models import Education, Subject, Section, Lecture
+from .forms import (
+    DocumentsForm, StudentsWorksForm, UserEditForm, UserRegistrationForm, PortfolioStudentForm
+)
+from .mixins import MessageValidFormMixin, RoleContextMixin, RoleSuccessUrlMixin, EducationsListMixin
+from .models import User, Portfolio
+from apps.education.forms import GradeForm
+
+from django import forms
+from .models import Portfolio
+from apps.education.models import Grade
 
 
 class RegisterView(CreateView):
@@ -181,7 +196,7 @@ class UploadPortfolioView(
     """
     View для загрузки портфолио.
     """
-    form_class = PortfolioForm
+    form_class = PortfolioStudentForm
     template_name = 'account/student/add_portfolio.html'
     url_name = 'add_portfolio'
     success_message = 'Портфолио успешно загружено.'
@@ -214,9 +229,38 @@ class AddDocumentsView(
         return super().form_valid(form)
 
 
-class StudentsWorksView(View):
-    def get(self, request, role):
-        return render(
-            request, "account/teacher/students_works.html",
-            context={'role': role}
-        )
+class StudentsWorksView(LoginRequiredMixin, RoleContextMixin, ModelFormSetView):
+    """
+    Отображение портфолио пользователя
+    """
+    model = Portfolio
+    form_class = StudentsWorksForm
+    template_name = 'account/teacher/students_works.html'
+    fields = ['file', 'grade']
+    factory_kwargs = {
+        'extra': 0,
+        'edit_only': True,
+
+        'widgets': {
+            'grade': forms.NumberInput(attrs={'required': False}),
+            'file': forms.FileInput(attrs={'required': False})
+        }
+    }
+
+    def get_queryset(self):
+        user = self.request.user
+        return Portfolio.objects.filter(teacher=user).order_by('date_added')
+
+    def formset_valid(self, formset):
+        for form in formset:
+            if form.cleaned_data.get('grade_value') and not form.instance.grade:
+                g = Grade(grade_100=form.cleaned_data['grade_value'])
+                g.save()
+                form.instance.grade = g
+                form.save()
+        return redirect('students_works', role=self.kwargs['role'])
+
+    def formset_invalid(self, formset):
+        print(formset.errors)
+
+        return JsonResponse({})

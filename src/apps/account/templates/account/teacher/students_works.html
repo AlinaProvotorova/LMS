@@ -6,18 +6,27 @@
 
 
 {% block content_account %}
+<form action="{% url 'students_works' role=role %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    <div class="my-portfolio-table">
+        <div class="thead">Название документа</div>
+        <div class="thead">Дисциплина</div>
+        <div class="thead">Оценка</div>
+        <div class="thead">Дата загрузки</div>
+        {% for portfolio in formset %}
 
-<div class="my-portfolio-table">
-  <div class="thead">Название документа</div>
-  <div class="thead">Дисциплина</div>
-  <div class="thead">Оценка</div>
-  <div class="thead">Дата загрузки</div>
-  {% for portfolio in portfolio_list %}
-  <div class="tbody"><a href="{{ portfolio.file.url }}">Ссылка</a></div>
-  <div class="tbody">{{ portfolio.title }}</div>
-  <div class="tbody">5</div>
-  <div class="tbody">{{ portfolio.date_added }}</div>
-  {% endfor %}
-  <div class="psw-change"><p><a href="{% url 'add_portfolio' role=role %}">добавить</a></p></div>
-</div>
+        <div class="tbody" style="display: none;">{{ portfolio.id }}</div>
+        <div class="tbody"><a href="{{ portfolio.instance.file.url }}">Ссылка</a></div>
+        <div class="tbody">{{ portfolio.instance.title }}</div>
+        {% if portfolio.instance.grade %}
+        <div class="tbody">{{ portfolio.instance.grade }}</div>
+        {% else %}
+        <div class="tbody">{{ portfolio.grade_value }}</div>
+        {% endif %}
+        <div class="tbody">{{ portfolio.instance.date_added }}</div>
+        {% endfor %}
+        <button class="btn btn-primary btn-block">Отправить</button>
+    </div>
+</form>
 {% endblock content_account %}

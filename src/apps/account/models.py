@@ -101,22 +101,22 @@ class Portfolio(BaseModel):
         verbose_name_plural = "Портфолио"
 
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, blank=True, unique=False,
+        User, on_delete=models.CASCADE, null=True, blank=True, unique=False,
         verbose_name='Пользователь', related_name='portfolio'
     )
     title = models.CharField('Название', max_length=150, blank=False)
-    file = models.FileField('Файл', upload_to=get_user_dir_path, null=True)
+    file = models.FileField('Файл', upload_to=get_user_dir_path)
     date_added = models.DateField('Дата добавления', auto_now_add=True)
     teacher = models.ForeignKey(
         User, on_delete=models.PROTECT, related_name="student_portfolio",
-        verbose_name='Преподаватель', null=True
+        verbose_name='Преподаватель', null=True, blank=True
     )
     subject = models.ForeignKey(
         'education.Subject', on_delete=models.PROTECT, related_name="subject_portfolio",
-        verbose_name='Дисциплина', null=True
+        verbose_name='Дисциплина', null=True, blank=True
     )
-    grade = models.ForeignKey(
-        'education.Grade', on_delete=models.PROTECT, verbose_name='Оценка', null=True
+    grade = models.OneToOneField(
+        'education.Grade', on_delete=models.SET_NULL, verbose_name='Оценка', null=True, blank=True
     )
 
 

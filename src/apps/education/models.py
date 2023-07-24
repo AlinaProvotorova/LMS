@@ -1,7 +1,11 @@
 from django.db import models
-
+import os
 from apps.account.models import User
 from apps.shared.models import BaseModel
+import mammoth
+from django.core.files import File
+from django.conf import settings
+import aspose.words as aw
 
 
 class Education(BaseModel):
@@ -93,12 +97,36 @@ class Lecture(BaseModel):
         )
 
     title = models.CharField('Название', max_length=150, blank=False)
-    content = models.FileField('Контент', upload_to=get_dir_path, blank=True, null=True)
+    content = models.FileField('Контент', upload_to=get_dir_path, blank=True, null=True, max_length=255)
     date_added = models.DateField('Дата создания', blank=False)
     section = models.ForeignKey(
         Section, on_delete=models.PROTECT, null=True, related_name='lectures',
         verbose_name='Раздел'
     )
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if self.content:
+            html_path = self.convert_docx_to_html(self.content.path)
+            self.content = html_path
+            self.save()
+            # with open(html_path, 'rb') as html_file:
+            #     new_content = File(html_file)
+            #     self.content = new_content
+            #     self.save()
+
+    def convert_docx_to_html(self, content):
+        # Load the document from the disc.
+        doc = aw.Document(content)
+        html = doc.save(self.get_dir_path(self.content.name))
+        print(html.path)
+        # Save the document to HTML format.
+        # with open(content, "rb") as docx_file:
+        #     result = mammoth.convert_to_html(docx_file)
+        # html_abs_path = self.content.path.replace(".docx", ".html")
+        # with open(html_abs_path, "a", encoding='UTF-8') as html_file:
+        #     html_file.write(result.value)
+        return html
 
 
 class GradingSystem(BaseModel):
@@ -123,26 +151,27 @@ class Grade(BaseModel):
     grade_100 = models.PositiveIntegerField(blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        if self.grade_100 < 55:
-            grading_system = GradingSystem.objects.get(pk='F')
-            self.grading_system = grading_system
-        elif self.grade_100 < 65:
-            grading_system = GradingSystem.objects.get(pk='E')
-            self.grading_system = grading_system
-        elif self.grade_100 < 75:
-            grading_system = GradingSystem.objects.get(pk='D')
-            self.grading_system = grading_system
-        elif self.grade_100 < 85:
-            grading_system = GradingSystem.objects.get(pk='C')
-            self.grading_system = grading_system
-        elif self.grade_100 < 95:
-            grading_system = GradingSystem.objects.get(pk='В')
-            self.grading_system = grading_system
-        elif self.grade_100 <= 100:
-            grading_system = GradingSystem.objects.get(pk='A')
-            self.grading_system = grading_system
+        if self.grade_100 is not None:
+            if self.grade_100 < 55:
+                grading_system = GradingSystem.objects.get(pk='F')
+                self.grading_system = grading_system
+            elif self.grade_100 < 65:
+                grading_system = GradingSystem.objects.get(pk='E')
+                self.grading_system = grading_system
+            elif self.grade_100 < 75:
+                grading_system = GradingSystem.objects.get(pk='D')
+                self.grading_system = grading_system
+            elif self.grade_100 < 85:
+                grading_system = GradingSystem.objects.get(pk='C')
+                self.grading_system = grading_system
+            elif self.grade_100 < 95:
+                grading_system = GradingSystem.objects.get(pk='В')
+                self.grading_system = grading_system
+            elif self.grade_100 <= 100:
+                grading_system = GradingSystem.objects.get(pk='A')
+                self.grading_system = grading_system
 
-        super().save(*args, **kwargs)
+            super().save(*args, **kwargs)
 
     def __str__(self):
         return self.grading_system.grade_in_words

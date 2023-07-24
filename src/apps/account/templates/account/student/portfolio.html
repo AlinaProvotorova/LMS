@@ -15,7 +15,7 @@
   {% for portfolio in portfolio_list %}
   <div class="tbody"><a href="{{ portfolio.file.url }}">Ссылка</a></div>
   <div class="tbody">{{ portfolio.title }}</div>
-  <div class="tbody">5</div>
+  <div class="tbody">{{ portfolio.grade }}</div>
   <div class="tbody">{{ portfolio.date_added }}</div>
   {% endfor %}
   <div class="psw-change"><p><a href="{% url 'add_portfolio' role=role %}">добавить</a></p></div>

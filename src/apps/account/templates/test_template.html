@@ -1,0 +1,29 @@
+<!-- your_template.html -->
+<form method="post">
+  {% csrf_token %}
+  <table>
+    <thead>
+      <tr>
+        <th>Название портфолио</th>
+        <th>Оценка</th>
+        <th>Обновить оценку</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for portfolio, form in portfolios %}
+      <tr>
+        <td>{{ portfolio.title }}</td>
+        <td>
+          {% if portfolio.grade %}
+            {{ portfolio.grade.grade_100 }}
+          {% else %}
+            Нет оценки
+          {% endif %}
+        </td>
+        <td>{{ form.as_table }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <button type="submit">Сохранить изменения</button>
+</form>

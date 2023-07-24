@@ -8,8 +8,8 @@ from .views import (
     AddDocumentsView, DocumentsUserView, EditProfileView, ProfileView,
     RegisterView, ScheduleView, StudentCourseView, CoursesStudentView,
     EducationView, EducationsView, StudentPortfolioView,
-    StudentsWorksView, UploadPortfolioView, SubjectView, SectionView,
-    LectureView
+    UploadPortfolioView, SubjectView, SectionView,
+    LectureView, StudentsWorksView
 )
 
 urlpatterns = [
@@ -91,7 +91,7 @@ urlpatterns = [
     path(
         '<str:role>/students_works', StudentsWorksView.as_view(),
         name='students_works'
-    )
+    ),
 ]
 
 if settings.DEBUG:

@@ -25,14 +25,33 @@ class UserEditForm(forms.ModelForm):
         }
 
 
-class PortfolioForm(forms.ModelForm):
+class StudentsWorksForm(forms.ModelForm):
+    """
+      Форма для выставления оценок за портфолио студентам
+    """
+    class Meta:
+        model = Portfolio
+        fields = ['file', 'grade']
+
+    grade_value = forms.DecimalField(
+        required=False,
+        min_value=0,
+        max_value=100
+    )
+
+
+class PortfolioStudentForm(forms.ModelForm):
     """
     Форма добавления портфолио
     """
 
     class Meta:
         model = Portfolio
-        fields = ('title', 'file')
+        fields = ('teacher', 'title', 'subject', 'file')
+        widgets = {
+            'teacher': forms.Select(attrs={'class': 'select-css'}),
+            'subject': forms.Select(attrs={'class': 'select-css'}),
+        }
 
 
 class DocumentsForm(forms.ModelForm):

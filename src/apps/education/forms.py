@@ -1,7 +1,13 @@
 from django import forms
 from django.forms import formset_factory
 
-from .models import Test, Question, Answer
+from .models import Test, Question, Answer, Grade
+
+
+class GradeForm(forms.ModelForm):
+    class Meta:
+        model = Grade
+        fields = ['grade_100']
 
 
 class TestForm(forms.ModelForm):
