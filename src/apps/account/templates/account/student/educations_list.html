@@ -10,10 +10,13 @@
 <div class="course-progress">
   <div class="courses-lk">
     <h1>{{ education.education.title }}</h1>
-    <div class="status">в процессе</div>
-    <div class="state">5</div>
+    <div class="state">{{ education.education.get_program_type }}</div>
     <div class="info">
-      <a href="{% url 'education_detail' role=role id_education=education.id %}">Подробнее</a>
+      {% if education.education.is_online %}
+        <a href="{% url 'education_detail' role=role id_education=education.education.id %}">Подробнее</a>
+      {% else %}
+        <a href="{% url 'education_detail_ofline' role=role id_education=education.education.id %}">Подробнее</a>
+       {% endif %}
     </div>
   </div>
 </div>

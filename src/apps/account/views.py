@@ -72,21 +72,10 @@ class EditProfileView(
         return self.request.user
 
 
-class CoursesStudentView(EducationsListMixin, LoginRequiredMixin, ListView):
-    """
-    Отображение всех курсов студента
-    """
-
-    template_name = "account/student/courses_list.html"
-    is_online = True
-
-
 class EducationsView(EducationsListMixin, LoginRequiredMixin, ListView):
     """
     Отображение всех программ обучения студента
     """
-
-    is_online = False
 
     def get_template_names(self):
         return f"account/{self.kwargs['role']}/educations_list.html"
@@ -106,16 +95,6 @@ class SubjectsView(RoleContextMixin, LoginRequiredMixin, ListView):
         return self.request.user.teacher_educations.all()
 
 
-class StudentCourseView(LoginRequiredMixin, RoleContextMixin, DetailView):
-    """
-    Отображение одного курса пользователя
-    """
-    model = Education
-    context_object_name = 'education'
-    pk_url_kwarg = 'id_education'
-    template_name = "account/student/course_detail.html"
-
-
 class EducationView(LoginRequiredMixin, RoleContextMixin, DetailView):
     """
     Отображение одной программы обучения пользователя и дисциплин
@@ -126,6 +105,18 @@ class EducationView(LoginRequiredMixin, RoleContextMixin, DetailView):
 
     def get_template_names(self):
         return f"account/{self.kwargs['role']}/education_detail.html"
+
+
+class EducationOflineView(LoginRequiredMixin, RoleContextMixin, DetailView):
+    """
+    Отображение одной программы обучения пользователя и дисциплин
+    """
+    model = Education
+    context_object_name = 'education'
+    pk_url_kwarg = 'id_education'
+
+    def get_template_names(self):
+        return f"account/{self.kwargs['role']}/education_ofline_detail.html"
 
 
 class SubjectView(LoginRequiredMixin, RoleContextMixin, DetailView):

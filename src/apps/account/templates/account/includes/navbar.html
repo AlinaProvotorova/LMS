@@ -32,12 +32,12 @@
 <div class="navigation-lk">
   <div class="my-education">
     <div class="my-education-logo"><img src="{% static 'img/my-education.svg' %}" alt="#"></div>
-    <div class="my-education-text"><a href="{% url 'educations' role='student' %}">Моё обучение</a>
+    <div class="my-education-text"><a href="{% url 'educations' role='student' %}?is_online=False">Моё обучение</a>
     </div>
   </div>
   <div class="my-courses">
     <div class="my-courses-logo"><img src="{% static 'img/my-courses.svg' %}" alt="#"></div>
-    <div class="my-courses-text"><a href="{% url 'courses_list' role='student' %}">Мои курсы</a></div>
+    <div class="my-courses-text"><a href="{% url 'educations' role='student' %}?is_online=True">Мои курсы</a></div>
   </div>
   <div class="my-schedule">
     <div class="my-schedule-logo"><img src="{% static 'img/my-schedule.svg' %}" alt="#"></div>

@@ -42,7 +42,6 @@ class EducationsListMixin(RoleContextMixin):
     """
 
     context_object_name = 'educations'
-    is_online = None
 
     def get_queryset(self):
         user = self.request.user
@@ -50,6 +49,6 @@ class EducationsListMixin(RoleContextMixin):
             queryset = user.author_educations.all()
         else:
             queryset = user.educations_student.filter(
-                education__is_online=self.is_online
+                education__is_online=self.request.GET.get('is_online')
             )
         return queryset
