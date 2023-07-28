@@ -3,32 +3,11 @@ from django import forms
 from .models import User, Portfolio, DocumentsUser
 
 
-class UserEditForm(forms.ModelForm):
-    """
-    Форма редактирования профиля
-    """
-
-    class Meta:
-        model = User
-        fields = (
-            'first_name', 'reporting', 'last_name', 'email',
-            'date_of_birth', 'photo', 'telephone'
-        )
-        labels = {
-            'first_name': 'Имя',
-            'reporting': 'Отчество',
-            'last_name': 'Фамилия',
-            'email': 'Электронная почта',
-            'date_of_birth': 'Дата рождения',
-            'photo': 'Фото',
-            'telephone': 'Телефон',
-        }
-
-
 class StudentsWorksForm(forms.ModelForm):
     """
       Форма для выставления оценок за портфолио студентам
     """
+
     class Meta:
         model = Portfolio
         fields = ['file', 'grade']

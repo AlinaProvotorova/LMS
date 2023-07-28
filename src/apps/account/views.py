@@ -1,30 +1,20 @@
 from django import forms
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, View, ListView, DetailView, FormView, TemplateView
-from extra_views import ModelFormSetView, FormSetView
-from django import forms
-from django.http import JsonResponse
+from django.views.generic import CreateView, View, ListView, DetailView, FormView, UpdateView
+from extra_views import ModelFormSetView
 
-from .models import User, Portfolio, DocumentsUser
-from django.forms import modelformset_factory
-from apps.education.models import Grade
-from urllib import request
-from django.core.files.base import ContentFile
-from django.utils.text import slugify
 from apps.education.models import Education, Subject, Section, Lecture
+from apps.education.models import Grade
 from .forms import (
-    DocumentsForm, StudentsWorksForm, UserEditForm, UserRegistrationForm, PortfolioStudentForm
+    DocumentsForm, StudentsWorksForm, UserRegistrationForm, PortfolioStudentForm
 )
 from .mixins import MessageValidFormMixin, RoleContextMixin, RoleSuccessUrlMixin, EducationsListMixin
-from .models import User, Portfolio
-from apps.education.forms import GradeForm
-
-from django import forms
 from .models import Portfolio
-from apps.education.models import Grade
+from .models import User
 
 
 class RegisterView(CreateView):
@@ -62,7 +52,7 @@ class ProfileView(LoginRequiredMixin, View):
 
 
 class EditProfileView(
-    LoginRequiredMixin, RoleContextMixin, RoleSuccessUrlMixin, FormView,
+    LoginRequiredMixin, RoleContextMixin, RoleSuccessUrlMixin, UpdateView,
     MessageValidFormMixin
 ):
     """
@@ -70,10 +60,16 @@ class EditProfileView(
     """
 
     template_name = 'account/base/profile_edit.html'
-    form_class = UserEditForm
     success_message = 'Профиль успешно обновлен'
     error_message = 'Ошибка при обновлении вашего профиля'
     url_name = 'edit'
+    fields = (
+        'first_name', 'reporting', 'last_name', 'email',
+        'date_of_birth', 'photo', 'telephone'
+    )
+
+    def get_object(self, queryset=None):
+        return self.request.user
 
 
 class CoursesStudentView(EducationsListMixin, LoginRequiredMixin, ListView):
