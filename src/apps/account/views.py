@@ -92,6 +92,20 @@ class EducationsView(EducationsListMixin, LoginRequiredMixin, ListView):
         return f"account/{self.kwargs['role']}/educations_list.html"
 
 
+class SubjectsView(RoleContextMixin, LoginRequiredMixin, ListView):
+    """
+    Отображение всех программ обучения студента
+    """
+
+    context_object_name = 'subjects'
+
+    def get_template_names(self):
+        return f"account/{self.kwargs['role']}/my_subjects.html"
+
+    def get_queryset(self):
+        return self.request.user.teacher_educations.all()
+
+
 class StudentCourseView(LoginRequiredMixin, RoleContextMixin, DetailView):
     """
     Отображение одного курса пользователя

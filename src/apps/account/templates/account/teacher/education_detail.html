@@ -12,26 +12,6 @@
     <div class="state">{{ education.date_start }}</div>
     <div class="state">{{ education.get_program_type }}</div>
     <div class="state">{{ education.author.full_name }}</div>
-    {% for subject in education.education_subjects.all %}
-    <section id="container" class="container">
-        <div class="discipline-mat-container">
-            <div class="grid-table">
-                <div class="dis-name thead">
-                    {{ subject.title }}
-                </div>
-                <div >{{ subject.description }}</div>
-                <div >{{ subject.date_added }}</div>
-                <div >{{ subject.studying_time }}</div>
-                <div >{{ subject.sequence }}</div>
-                {% for teacher in subject.teachers.all %}
-                <div >{{ teacher.full_name }}</div>
-                {% endfor %}
-                <div class="info">
-                    <a href="{% url 'subject_detail' role=role id_subject=subject.id %}">Подробнее</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    {% endfor %}
+    {% include 'account/teacher/subjects_list.html' with subjects=education.education_subjects.all%}
 </div>
 {% endblock content_account %}

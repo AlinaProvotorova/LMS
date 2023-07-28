@@ -9,7 +9,7 @@ from .views import (
     RegisterView, ScheduleView, StudentCourseView, CoursesStudentView,
     EducationView, EducationsView, StudentPortfolioView,
     UploadPortfolioView, SubjectView, SectionView,
-    LectureView, StudentsWorksView
+    LectureView, StudentsWorksView, SubjectsView
 )
 
 urlpatterns = [
@@ -50,6 +50,7 @@ urlpatterns = [
     path('<str:role>/edit/', EditProfileView.as_view(), name='edit'),
     path('<str:role>/course', CoursesStudentView.as_view(), name='courses_list'),
     path('<str:role>/education', EducationsView.as_view(), name='educations'),
+    path('<str:role>/subjects', SubjectsView.as_view(), name='subjects'),
     path('<str:role>/schedule', ScheduleView.as_view(), name='schedule'),
     path(
         '<str:role>/portfolio', StudentPortfolioView.as_view(),
