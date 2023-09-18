@@ -1,0 +1,18 @@
+{% extends 'account/base/base_account.html' %}
+
+{% block title %}
+Загрузка Документов
+{% endblock title %}
+
+{% block content_account %}
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {% for filed in form %}
+  {{ filed.label }}
+  {{ filed }}
+  {% endfor %}
+  <button type="submit"> Добавить</button>
+</form>
+
+{% endblock content_account%}

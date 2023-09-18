@@ -1,0 +1,109 @@
+html {
+	height: 100%;
+}
+body {
+	margin: 0;
+	padding: 0;
+	color: #526937;
+	font-size: 16px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+	min-height: 100%;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	padding: 0;
+	margin: 0;
+	font-weight: 500;
+	color: #526937;
+}
+/* ============================HEADER================================ */
+ul,
+li {
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	width: 100%;
+	margin: 0 auto;
+	background-color: #F5F5F5;
+}
+
+
+.header {
+	background: #F5F5F5;
+}
+
+.logo {
+	margin-right: 40px;
+	margin-left: 100px;
+}
+
+.nav {
+	display: flex;
+	align-items: center;
+}
+
+header a {
+	color: #121711;
+	text-decoration: none;
+	;
+}
+
+.menu {
+	display: flex;
+}
+
+.menu li a {
+	font-size: 15px;
+}
+
+.menu li a:hover {
+	font-size: 15px;
+	border-bottom: 2px solid #526937;
+}
+
+.menu li {
+	margin-right: 50px;
+}
+
+.lk {
+	margin-left: auto;
+	padding: 34px;
+	border-bottom-left-radius: 100px;
+	background-color: #EAF3DE;
+	;
+}
+/* ============================HEADER ENDS=========================== */
+/* ============================FOOTER================================ */
+.foot-wrapper {
+	display: flex;
+	align-items: center;
+	min-height: 150px;
+	justify-content: space-between;
+	padding-left: 50px;
+	padding-right: 110px;
+	background-color: #EAF3DE;
+}
+
+.footer-titles {
+	color: #526937;
+	font-weight: 600;
+	font-size: 16px;
+}
+
+.university-title {
+	color: #121711;
+	font-size: 13px;
+	font-weight: 400;
+}
+/* ============================FOOTER ENDS=========================== */

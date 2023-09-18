@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Создание аккаунта{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/registration.css' %}">
+{% endblock head %}
+
+{% block content %}
+<div class="container">
+  <div class="form-container">
+    <div class="auth-form">
+      <form class="login-form" action="{% url 'register' %}" method="POST">
+        {% csrf_token %}
+        <h2>Регистрация</h2>
+        <div class="singup-fields">
+          <label for="username">Введите имя пользователя *</label>
+          <input name="username" id="username" type="text" placeholder="Имя пользователя" pattern="[0-9A-Za-z]+"
+                 autocomplete="username" title="Имя пользователя может содержать только латинские буквы и цифры"
+                 value="{{ username }}" required>
+          <label for="name">Введите имя</label>
+          <input name="first_name" type="text" id="name" placeholder="Введите свое имя" autocomplete="first_name"
+                 value="{{ first_name }}">
+          <label for="surname">Введите фамилию</label>
+          <input name="last_name" type="text" id="surname" placeholder="Введите свою фамилию" autocomplete="last_name"
+                 value="{{ last_name }}">
+          <label for="mail">Введите ваш адрес электронной почты *</label>
+          <input name="email" type="email" id="mail" autocomplete="email" value="{{ email }}" placeholder="E-mail"
+                 required>
+          <label for="psw1">Введите ваш пароль *</label>
+          <input name="password" type="password" id="psw1" autocomplete="password" value="{{ password }}"
+                 placeholder="Ваш пароль"
+                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                 title="8 или более символов, в том числе по меньшей мере, одну цифру, одну прописную, одну строчные буквы"
+                 required>
+          <label for="psw2">Повторите ваш пароль *</label>
+          <input name="password2" type="password" id="psw2" autocomplete="password2" value="{{ password2 }}"
+                 placeholder="Повторите пароль"
+                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                 title="8 или более символов, в том числе по меньшей мере, одну цифру, одну прописную, одну строчные буквы"
+                 required>
+          {% if form.errors.password2 %}
+          <span class="error-message">{{ form.errors.password2 }}</span>
+          {% endif %}
+          <p id="validate-status"></p>
+          <button type="submit" class="btn btn-primary btn-block">Регистрация</button>
+        </div>
+      </form>
+    </div>
+    <div class="right-sider">
+
+    </div>
+    <div class="character">
+      <img src="{% static 'img/Character.svg ' %}" alt="character">
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

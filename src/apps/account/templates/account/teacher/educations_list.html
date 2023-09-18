@@ -1,0 +1,21 @@
+{% extends 'account/base/base_account.html' %}
+
+{% block title %}
+Мои дисциплины
+{% endblock title %}
+
+
+{% block content_account %}
+{% for education in educations %}
+<div class="course-progress">
+  <div class="courses-lk">
+    <h1>{{ education.title }}</h1>
+    <div class="status">{{ education.get_status_display }}</div>
+    <div class="state">{{ education.get_program_type }}</div>
+    <div class="info">
+      <a href="{% url 'education_detail' role=role id_education=education.id %}">Подробнее</a>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock content_account %}

@@ -1,0 +1,32 @@
+.subject-page-wrapper {
+   display: flex;
+   margin: auto;
+   width: 1000px;
+}
+
+.sublect-page-content {
+   display: grid;
+   grid-template-columns: 30% 1fr;
+   border: 7px solid rgba(169, 197, 147, 0.1);
+	background: rgba(241, 242, 240, 0.6);
+	box-shadow: 7px 8px 9px 1px rgba(169, 197, 147, 0.68);
+	border-radius: 22px;
+   margin: 30px;
+   padding: 15px;
+}
+
+.page-nav {
+   height: fit-content;
+   position: sticky;
+   top: 10%;
+}
+
+.sector {
+   margin: 15px 0 15px 0;
+}
+
+.sector a {
+   text-decoration: none;
+   color: #526937;
+   font-size: 20px;
+}

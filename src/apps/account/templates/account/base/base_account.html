@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/lk-style.css' %}">
+<link rel="stylesheet" href="{% static 'css/lk-my-portfolio-style.css' %}">
+<link rel="stylesheet" href="{% static 'css/lk-my-profile.css' %}">
+<link rel="stylesheet" href="{% static 'css/lk-my-schedule-style.css' %}">
+<link rel="stylesheet" href="{% static 'css/doc-loading-page.css' %}">
+<link rel="stylesheet" href="{% static 'css/doc-loading-page.css' %}">
+<link rel="stylesheet" href="{% static 'css/discipline-material.css' %}">
+<link rel="stylesheet" href="{% static 'css/subject-page.css' %}
+
+<!--ссылка относится к редактированию профиля-->
+<link rel="stylesheet" href="{% static 'css/registration.css' %}">
+{% endblock head %}
+{% block content %}
+<section id="container" class="container">
+  <div class="container">
+    <div class="content-lk">
+      {% include 'account/includes/navbar.html' %}
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li class="{{ message.tags }}">
+          {{ message|safe }}
+          <a href="#" class="close">✖</a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      {% block content_account %} {% endblock content_account %}
+
+    </div>
+  </div>
+</section>
+{% endblock content %}
+
+
+
+
+

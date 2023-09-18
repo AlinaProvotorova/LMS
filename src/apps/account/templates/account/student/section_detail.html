@@ -1,0 +1,28 @@
+{% extends 'account/base/base_account.html' %}
+{% load static %}
+
+{% block title %}
+{{ education.title }}
+{% endblock title %}
+
+{% block content_account %}
+<section id="container" class="container">
+  <div class="container">
+    <div class="discipline-mat-container">
+      <div class="grid-table">
+        <div class="dis-name thead">
+          {{ section.title }}
+        </div>
+        <div class="tbody"></div>
+        {% for lecture in section.lectures.all %}
+          <div class="tbody"><a href="{% url 'lecture_detail' role=role id_lecture=lecture.id %}">{{ lecture.title }}</a></div>
+        {% endfor %}
+        <div class="tbody"></div>
+        <div class="tbody test-res test-vis"><a href="#">Итоговый тест</a></div>
+        <div class="tbody test-vis">100 баллов</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock %}

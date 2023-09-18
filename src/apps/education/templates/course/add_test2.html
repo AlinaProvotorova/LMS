@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Добавить тест
+{% endblock title %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/editing-tets.css' %}">
+
+{% endblock head %}
+
+{% block content %}
+<!--<script>-->
+<!--  $(document).on('click', '.add_answer', function(){-->
+<!--$(this).before(`<label class="answer">-->
+<!--               <input type="text" id="answer1" placeholder="Ответ X" required>-->
+<!--               <input type="checkbox">-->
+<!--               </label><br>`)-->
+<!--})-->
+
+<!--// Добавление Вопроса-->
+<!--$('.add_question').on('click', function() {-->
+
+<!--$(this).before(`<div class="question answer"><label class="question" for="question">-->
+<!--<h3>Введите свой вопрос</h3></label><br>-->
+<!--<textarea name="question" id="question" cols="100" rows="10" placeholder="Введите текст своего вопроса" required></textarea>-->
+<!--              <br>-->
+
+<!--              <label class="answer"><input type="text" id="answer1" placeholder="Ответ 1" required>-->
+<!--                <input type="checkbox">-->
+<!--              </label><br>-->
+<!--              <label class="answer"><input type="text" id="answer2" placeholder="Ответ 2" required>-->
+<!--                <input type="checkbox">-->
+<!--              </label><br>-->
+<!--              <button class="btn-block add_answer" type="button">Добавить ответ</button>-->
+<!--            </div>`-->
+<!--)})-->
+
+
+<!--</script>-->
+<section id="container" class="container">
+  <div class="container">
+    <div class="creating-new-tests">
+      <h1>Создание нового теста</h1>
+      <div class="test-creation-form-container">
+        <form class="test-creation-form" action="{% url 'add_test' %}"
+              method="POST" enctype="multipart/form-data">
+
+          <!--          {% csrf_token %}-->
+
+          <!--                    <fieldset>-->
+          <!--                      <label for="test-thame"><h4>Введите название теста</h4></label><br>-->
+          <!--                      <input type="text" id="test-thame" placeholder="Название теста" name="title" autocomplete="title"-->
+          <!--                             required><br>-->
+          <!--                      <label for="test-description"><h4>Описание теста</h4></label><br>-->
+          <!--                      <input type="text" id="test-description" placeholder="Описание теста" name="description"-->
+          <!--                             autocomplete="description"><br>-->
+          <!--                      <label for="test-timer"><h4>Отведенное время на выполнение задания</h4></label><br>-->
+          <!--                      <input type="number" id="test-timer" placeholder="Время на выполнение" name="time" autocomplete="time"-->
+          <!--                             required>-->
+          <!--                    </fieldset>-->
+          <label for="question"><h3>Введите свой вопрос</h3></label><br>
+          <textarea name="question" id="question" cols="100" rows="10"
+                    placeholder="Введите текст своего вопроса"
+                    autocomplete="question"></textarea>
+          <h3>Введите варианты ответа и отметьте правильный</h3>
+          {{ answer_formset.management_form }}
+          {% for form in answer_formset %}
+          <script src="{% static 'js/formset.js' %}"></script>
+          <div class="row form-row spacer">
+            <div class="col-2">
+              <label>Ответ</label>
+            </div>
+            <div class="col-4">
+              <div class="input-group">
+                <!--                          {{form.answer}}-->
+                <!--                          {{form.correct_answer}}-->
+                <label><input type="text" id="answer1"
+                              placeholder="Ответ 1" name="answer" autocomplete="answer">
+                  <input type="checkbox" name="correct_answer" autocomplete="correct_answer">
+                </label><br>
+                <!--                          <div class="input-group-append">-->
+                <button class="btn btn-success add-form-row">+</button>
+                <!--                          </div>-->
+              </div>
+            </div>
+          </div>
+          <!--          <label><input type="text" id="answer1"-->
+          <!--                        placeholder="Ответ 1" name="answer" autocomplete="answer">-->
+          <!--            <input type="checkbox" name="correct_answer" autocomplete="correct_answer">-->
+          <!--          </label><br>-->
+          <!--          {% endfor %}-->
+          <!--          <button class="btn-block add_answer" type="button">Добавить ответ</button>-->
+          <!--          <label><input type="text" id="answer2"-->
+          <!--                        placeholder="Ответ 1" name="answer" autocomplete="answer">-->
+          <!--            <input type="checkbox" name="correct_answer" autocomplete="correct_answer">-->
+          <!--          </label><br>-->
+          <!--          <label><input type="text" id="answer" placeholder="Ответ 2" autocomplete="answer" value="{{ answer }}">-->
+          <!--            <input type="checkbox" autocomplete="correct_answer" value="{{ correct_answer }}">-->
+          <!--          </label><br>-->
+          <!--          <label><input type="text" id="answer" placeholder="Ответ 3">-->
+          <!--            <input type="checkbox">-->
+          <!--          </label><br>-->
+          <!--          <label><input type="text" id="answer" placeholder="Ответ 4">-->
+          <!--            <input type="checkbox">-->
+          <!--          </label><br>-->
+          <!--          <label><input type="text" id="answer" placeholder="Ответ 5">-->
+          <!--            <input type="checkbox">-->
+          <!--          </label><br>-->
+          <div class="row spacer">
+            <div class="col-4 offset-2">
+              <button type="submit" class="btn btn-primary btn-block">Отправить</button>
+              <!--              <button type="reset">Очистить</button>-->
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}
+<!--<section id="container" class="container">-->
+<!--      <div class="container">-->
+<!--         <div class="creating-new-tests">-->
+<!--        <h1>Создание нового теста</h1>-->
+<!--        <div class="test-creation-form-container">-->
+<!--          <form class="test-creation-form" action="#" method="#">-->
+<!--            -->
+<!--            <fieldset>-->
+<!--              <label for="test-thame"><h4>Введите название теста</h4></label><br>-->
+<!--              <input type="text" id="test-thame" placeholder="Название теста" required><br>-->
+<!--              <label for="test-description"><h4>Описание теста</h4></label><br>-->
+<!--              <input type="text" id="test-description" placeholder="Описание теста"><br>-->
+<!--              <label for="test-timer"><h4>Отведенное время на выполнение задания</h4></label><br>-->
+<!--              <input type="number" id="test-timer" placeholder="Время на выполнение" required>-->
+<!--            </fieldset>-->
+
+<!--            <div class="question answer">-->
+<!--              <label class="question" for="question"><h3>Введите свой вопрос</h3></label><br>-->
+<!--              <textarea name="question" id="question" cols="100" rows="10" placeholder="Введите текст своего вопроса" required></textarea>-->
+<!--              <h3>Введите варианты ответа и отметьте правильный</h3>-->
+<!--            -->
+<!--              <label class="answer"><input type="text" id="answer1" placeholder="Ответ 1" required> -->
+<!--                <input type="checkbox">-->
+<!--              </label><br>-->
+<!--              <label class="answer"><input type="text" id="answer2" placeholder="Ответ 2" required> -->
+<!--                <input type="checkbox">-->
+<!--              </label><br>-->
+<!--              <button class="btn-block add_answer" type="button">Добавить ответ</button>-->
+<!--              -->
+<!--              <br>-->
+<!--              <button class="btn-block add_question" type="button" id="add_question">Добавить вопрос</button>-->
+<!--            </div>-->
+<!--            -->
+<!--   -->
+<!--            <div class="btn-block">-->
+<!--              <button type="submit">Отправить</button>-->
+<!--              <button type="reset">Очистить</button>-->
+<!--            </div>-->
+<!--          </form>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--   </section>-->
+
+<section id="container" class="container">
+  <div class="container">
+    <div class="creating-new-tests">
+      <h1>Создание нового теста</h1>
+      <div class="test-creation-form-container">
+        <form class="test-creation-form" action="#" method="#">
+
+          <fieldset>
+            <label for="test-thame"><h4>Введите название теста</h4></label><br>
+            <input type="text" id="test-thame" placeholder="Название теста" required><br>
+            <label for="test-description"><h4>Описание теста</h4></label><br>
+            <input type="text" id="test-description" placeholder="Описание теста"><br>
+            <label for="test-timer"><h4>Отведенное время на выполнение задания</h4></label><br>
+            <input type="number" id="test-timer" placeholder="Время на выполнение" required>
+          </fieldset>
+
+          <div class="question answer">
+
+            <label class="question" for="question"><h3>Введите свой вопрос</h3></label><br>
+            <textarea name="question" id="question" cols="100" rows="10" placeholder="Введите текст своего вопроса"
+                      required></textarea>
+
+            <h3>Введите варианты ответа и отметьте правильный</h3>
+
+            <label class="answer"><input type="text" id="answer1" placeholder="Ответ 1" required>
+              <input type="checkbox">
+            </label><br>
+            <label class="answer"><input type="text" id="answer2" placeholder="Ответ 2" required>
+              <input type="checkbox">
+            </label><br>
+            <button class="btn-block add_answer" type="button">Добавить ответ</button>
+
+            <br>
+            <button class="btn-block add_question" type="button" id="add_question">Добавить вопрос</button>
+          </div>
+
+
+          <div class="btn-block">
+            <button type="submit">Отправить</button>
+            <button type="reset">Очистить</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

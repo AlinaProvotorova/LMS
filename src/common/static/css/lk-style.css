@@ -1,0 +1,74 @@
+/* ============================LK-NAVIGATION======================== */
+.content-lk {
+   margin: auto;
+   width: 85%;
+   margin-top: 40px;
+   display: flex;
+}
+.navigation-lk {
+   min-width: 200px;
+}
+.navigation-lk > div {
+   display: flex;
+   margin-top: 50px;
+   align-items: center;
+   padding: 7px;
+}
+.my-education {
+   margin-top: 0;
+}
+
+.navigation-lk > div > div > a {
+   margin-left: 20px;
+   text-decoration: none;
+   color: #526937;
+   font-size: 15px;
+}
+
+.navigation-lk > div:hover {
+   background: linear-gradient(90deg, #D5F9DD -26.67%, rgba(241, 253, 243, 0.338542) 86.67%);
+}
+/* ============================LK-NAVIGATION ENDS==================== */
+
+.course-progress {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   align-items: center;
+   margin-left: 130px;
+   padding-top: 50px;
+   gap: 10px;
+   margin-bottom: 30px;
+}
+
+.courses-lk {
+   min-width: 286px;
+   min-height: 176px;
+   border: 7px solid rgba(169, 197, 147, 0.1);
+	background: rgba(241, 242, 240, 0.6);
+	box-shadow: 7px 8px 9px 1px rgba(169, 197, 147, 0.68);
+	border-radius: 22px;
+	margin-right: 25px;
+}
+
+.courses-lk > .info {
+   text-align: center;
+   margin: 15px 0 15px 0;
+}
+
+.courses-lk > .info > a {
+   text-decoration: none;
+   text-align: center;
+   color: #526937;
+   font-style: italic;
+}
+
+.courses-lk > h1, .state, .status {
+   text-transform: uppercase;
+   text-align: center;
+   color: #526937;
+   margin-top: 30px;
+}
+
+.select-css {
+     text-align: center;
+}

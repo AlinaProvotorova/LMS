@@ -1,0 +1,39 @@
+{% load static %}
+<header id="header" class="header" xmlns="http://www.w3.org/1999/html">
+  <div class="container">
+    <div class="nav">
+      <img src="{% static 'img/logo.svg' %}" class="logo" alt="Университет Естественных и Гуманитарных наук">
+      <ul class="menu">
+        <li class="main">
+          <a href="{% url 'index' %}">
+            Главная
+          </a>
+        </li>
+        <li class="programms">
+          <a href="{% url 'educations' %}">
+            Программы обучения
+          </a>
+        </li>
+        <li class="courses">
+          <a href="{% url 'courses' %}">
+            Курсы онлайн
+          </a>
+        </li>
+        <li class="documents">
+          <a href="{% url 'documents_university' %}">
+            Документы
+          </a>
+        </li>
+      </ul>
+      <div class="lk">
+        {% if request.user.is_authenticated %}
+        <img src="{% static 'img/lk-icon.svg' %}" class="logo">
+        <a href="{% url 'dashboard' %}">{{ user.username }}</a>|
+        <a href="{% url 'logout' %}">выйти</a>
+        {% else %}
+        <a href="{% url 'login' %}">войти</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</header>

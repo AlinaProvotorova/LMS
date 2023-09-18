@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Тест
+{% endblock title %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/passing-tests-style.css' %}">
+{% endblock head %}
+
+{% block content %}
+<section id="container" class="container">
+  <div class="container">
+    <div class="passing-tests-title"><h1>{{ data.test.title }}</h1></div>
+    <div class="passing-tests-block">
+      <div class="passing-tests-title"><h3>{{ data.test.description }}</h3></div>
+      <div class="passing-tests-title"><h3>Продолжительность теста: {{ data.test.time }} </h3></div>
+      <form action="#" method="post" target="#" class="passing-test-form">
+        {% csrf_token %}
+        {% for question, answers in data.questions.items %}
+
+        <div class="task-case">
+          <h2>{{ question }}</h2>
+          {% for answer in answers %}
+          <input type="radio" id="answer-1-1" name="answ1" value={{answer}} class="custom-radio">
+          <label for="answer-1-1">{{answer}}</label><br>
+          <!--          <input type="radio" id="answer-1-2" name="answ1" value="16" class="custom-radio">-->
+          <!--          <label for="answer-1-2">16</label><br>-->
+          <!--          <input type="radio" id="answer-1-3" name="answ1" value="17" class="custom-radio">-->
+          <!--          <label for="answer-1-3">17</label><br>-->
+          <!--          <input type="radio" id="answer-1-4" name="answ1" value="18" class="custom-radio">-->
+          <!--          <label for="answer-1-4">18</label><br>-->
+          <!--          <input type="radio" id="answer-1-5" name="answ1" value="19" class="custom-radio">-->
+          <!--          <label for="answer-1-5">19</label><br>-->
+          {% endfor %}
+        </div>
+        {% endfor %}
+        <!--        <div class="task-case">-->
+        <!--          <h2>Как вас зовут?</h2>-->
+        <!--          <input type="radio" id="answer-2-1" name="answ2" value="Влад" class="custom-radio">-->
+        <!--          <label for="answer-2-1">Влад</label><br>-->
+        <!--          <input type="radio" id="answer-2-2" name="answ2" value="Света" class="custom-radio">-->
+        <!--          <label for="answer-2-2">Света</label><br>-->
+        <!--          <input type="radio" id="answer-2-3" name="answ2" value="Марат" class="custom-radio">-->
+        <!--          <label for="answer-2-3">Марат</label><br>-->
+        <!--          <input type="radio" id="answer-2-4" name="answ2" value="Олег" class="custom-radio">-->
+        <!--          <label for="answer-2-4">Олег</label><br>-->
+        <!--          <input type="radio" id="answer-2-5" name="answ2" value="Иван" class="custom-radio">-->
+        <!--          <label for="answer-2-5">Иван</label><br>-->
+        <!--        </div>-->
+        <div class="button-submit-task">
+          <button type="submit" class="btn btn-primary">Отправить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</section>
+{% endblock content %}
+

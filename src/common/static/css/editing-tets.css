@@ -1,0 +1,53 @@
+.creating-new-tests {
+   text-align: center;
+   display: flex;
+   max-width: 1000px;
+   margin: auto;
+   justify-content: center;
+}
+
+
+.creating-new-tests h1 {
+   font-weight: 300;
+   font-size: 32px;
+   margin-top: 30px;
+}
+
+.creating-new-tests {
+   flex-direction: column;
+   width: 100%;
+   padding-bottom: 20px;
+}
+
+.test-creation-form-container h3 {
+   margin-top: 40px;
+   margin-bottom: 20px;
+}
+
+input[type="text"] {
+   margin-bottom: 10px;
+}
+
+input[type="checkbox"]:hover {
+   cursor: pointer;
+}
+
+.btn-block button{
+	margin-top: 55px;
+	background: linear-gradient(180deg, #D5F9DD 0%, #C3E9CB 100%);
+	border-radius: 16px;
+	border: 2px solid;
+	color: #FFFFFF;
+	font-weight: 600;
+	font-size: 20px;
+	text-transform: uppercase;
+	line-height: 24px;
+	padding: 7px 60px;
+}
+
+.btn-block button:hover {
+	border: 2px solid rgba(169, 197, 147, 0.1);
+	box-shadow: 7px 8px 9px 1px rgba(169, 197, 147, 0.68);
+	border-radius: 22px;
+	cursor: pointer;
+}

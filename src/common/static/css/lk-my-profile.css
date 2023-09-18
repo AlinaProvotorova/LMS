@@ -1,0 +1,58 @@
+.my-profile-card {
+
+   height: min-content;
+   color: #526937;
+   text-align: center;
+   border: 1px solid rgba(169, 197, 147, 0.1);
+   background: rgba(241, 242, 240, 0.6);
+   box-shadow: 3px 8px 9px 1px rgba(169, 197, 147, 0.38);
+   border-radius: 5px;
+   margin: 30px;
+   padding: 15px;
+}
+
+.profile-card-fio {
+   display: flex;
+   margin: 10px;
+}
+
+.lk-avatar {
+   width: 75px;
+   height: 75px;
+   background-color: gray;
+   margin-right: 50px;
+   border-radius: 4px;
+}
+
+.student-status {
+   margin-top: 15px;
+}
+
+.lk-profile-mail, .lk-profile-phone {
+   display: flex;
+   margin-top: 20px;
+   margin-left: 10px;
+}
+
+.lk-profile-mail div, .lk-profile-phone div {
+   margin-right: 15px;
+
+}
+
+.lk-profile-mail div:nth-child(3) {
+   margin-left: 40px;
+
+}
+
+.lk-profile-phone div:nth-child(3) {
+   margin-left: 15px;
+}
+
+.psw-change {
+   text-align: right;
+   margin-top: 45px;
+}
+
+.psw-change a {
+   text-decoration: none;
+}

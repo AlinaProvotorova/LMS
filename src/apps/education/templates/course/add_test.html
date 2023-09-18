@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Добавить тест
+{% endblock title %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/editing-tets.css' %}">
+<script type="application/javascript" src="{% static 'js/jquery-3.6.4.js' %}"></script>
+<script type="application/javascript" src="{% static 'js/add-test-form.js' %}"></script>
+{% endblock head %}
+
+{% block content %}
+<section id="container" class="container">
+  <div class="container">
+    <div class="creating-new-tests">
+      <h1>Создание нового теста</h1>
+      <div class="test-creation-form-container">
+        <form class="test-creation-form" action="{% url 'add_test' %}"
+              method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          <fieldset>
+            <label for="test-thame"><h4>Введите название теста</h4></label><br>
+            <input type="text" id="test-thame" placeholder="Название теста" name="title" autocomplete="title"
+                   required><br>
+            <label for="test-description"><h4>Описание теста</h4></label><br>
+            <input type="text" id="test-description" placeholder="Описание теста" name="description"
+                   autocomplete="description"><br>
+            <label for="test-timer"><h4>Отведенное время на выполнение задания</h4></label><br>
+            <input type="number" id="test-timer" placeholder="Время на выполнение" name="time" autocomplete="time"
+                   required>
+          </fieldset>
+
+          <div class="question answer">
+            {{ question_formset.management_form }}
+            {% for form in question_formset %}
+
+            <div class="row form-row-q spacer">
+              <label><h3>Введите свой вопрос</h3></label>
+              <br>
+              {{form.question}}
+              <br>
+              {{ answer_formset.management_form }}
+              {% for form in answer_formset %}
+
+              <h3>Введите варианты ответа и отметьте правильный</h3>
+              <div class="row form-row spacer">
+                {{form.answer}}
+                {{form.correct_answer}}
+                <br>
+              </div>
+              {% endfor %}
+
+              <button class="btn-block add_answer" type="button">Добавить ответ</button>
+              <br>
+            </div>
+
+            {% endfor %}
+          </div>
+          <button class="btn-block add_question" type="button" id="add_question">Добавить вопрос</button>
+
+          <div class="btn-block">
+            <button type="submit" class="btn btn-primary btn-block">Отправить</button>
+            <button type="reset">Очистить</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
