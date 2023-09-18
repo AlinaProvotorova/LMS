@@ -3,21 +3,20 @@
   <div class="container">
     <div class="foot-wrapper">
       <img src="{% static 'img/logo.svg' %}" alt="logo">
-      <div class="university-title">Университет
-        Естественных и Гуманитарных наук
+      <div class="university-title"><a href="{% url 'index' %} ">Университет Естественных и Гуманитарных наук</a>
       </div>
       <div class="contacts">
         <div class="footer-titles">Контакты</div>
         <img src="{% static 'img/contacts.svg' %}" alt="contacts">
       </div>
       <div class="help">
-        <div class="footer-titles">Поддержка</div>
+        <div class="footer-titles"><a href="{% url 'support' %}">Поддержка</a></div>
       </div>
       <div class="payment">
-        <div class="footer-titles">Оплата</div>
+        <div class="footer-titles"><a href="{% url 'payment' %}">Оплата</a></div>
       </div>
       <div class="about">
-        <div class="footer-titles">О нас</div>
+        <div class="footer-titles"><a href="{% url 'about_us' %}">О нас</a></div>
       </div>
       <div class="socials">
         <div class="footer-titles">Соц. сети</div>

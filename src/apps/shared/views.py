@@ -13,3 +13,24 @@ def documents(request):
         request,
         'shared/documents.html',
     )
+
+
+def support(request):
+    return render(
+        request,
+        'shared/support.html',
+    )
+
+
+def payment(request):
+    return render(
+        request,
+        'shared/payment.html',
+    )
+
+
+def about_us(request):
+    return render(
+        request,
+        'shared/about_us.html',
+    )
